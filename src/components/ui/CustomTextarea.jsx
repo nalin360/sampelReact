@@ -8,8 +8,7 @@ const CustomTextarea = ({
 }) => {
   return (
       <textarea 
-      className='bg-gray-700 border-none text-white text-sm rounded-lg focus:ring-blue-500
-      placeholder:text-white focus:border-blue-500 block w-full p-2.5 outline-none'
+      className='w-64 py-2 pl-2 pr-4 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 text-gray-700 placeholder:text-gray-700'
       placeholder={placeholder} value={value} onChange={onChange} />
   );
 };

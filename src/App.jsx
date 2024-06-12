@@ -1,15 +1,18 @@
 
 import './App.css'
 import EventCreateForm from './components/EventCreateForm'
-import Buttons from './components/ui/Buttons'
-import Inputss from './components/ui/Inputss'
+import Demo from './pages/Demo'
 import Event from './pages/Event'
+import Game from './pages/tictacto'
 
 function App() {
 
   return (
-    <div className='bg-slate-700 w-screen h-screen m-0 , p-0'>
+    <div className='text-white bg-slate-700 w-screen h-screen m-0 , p-0'>
       <Event/>
+      {/* </> */}
+      {/* <Game/> */}
+      {/* <Demo/> */}
     </div>
   )
 }

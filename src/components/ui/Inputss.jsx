@@ -3,6 +3,7 @@ import React from 'react'
 function Inputss({
     label,
     className,
+    
     type,
     onChange,
     placeholder,
@@ -16,16 +17,14 @@ function Inputss({
             <div className=''>
       
                     <input
-                        // ref={inputref}
-                        type={type}
                         
+                        type={type}
                         className={
                             type === 'file'
-                            ? `block border border-gray-300 rounded-lg cursor-pointer bg-gray-700 border-none text-white text-sm  focus:ring-blue-500 focus:border-blue-500  w-full p-1.5 outline-none file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-gray-600 file:text-gray-200`
+                            ? `w-64 py-2 pl-2 pr-4 border border-gray-300 rounded-lg focus:outline-none   focus:ring-blue-500 focus:border-blue-500 p-1.5 outline-none file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-gray-600 file:text-gray-200`
                             
-                            : `block border border-gray-300 rounded-lg cursor-pointer bg-gray-700 border-none text-white text-sm  focus:ring-blue-500 focus:border-blue-500  w-full p-2.5 outline-none`
+                            : `w-64 py-2 pl-2 pr-4 border-2  border-gray-500 rounded-lg focus:outline-none focus:border-blue-500 text-gray-700`
                             }
-                      
                         aria-label={label}
                         tabIndex={0}
                         onChange={onChange}
