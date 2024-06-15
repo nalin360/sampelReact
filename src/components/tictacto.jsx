@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Board from "../components/game/Board";
+import Board from "./game/Board";
 
 export default function Game() {
 

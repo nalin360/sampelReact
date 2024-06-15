@@ -1,6 +1,6 @@
 import React from 'react';
 import customUseReducer from '../hook/customUseReducer';
-import Buttons from '../components/ui/Buttons';
+import Buttons from './ui/Buttons';
 function reducer(state, action) {
     if (action.type === 'incremented_age') {
         return {
