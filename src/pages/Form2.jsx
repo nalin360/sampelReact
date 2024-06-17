@@ -89,7 +89,7 @@ function Form2() {
             <RangeSlider min={1} max={40} value={form.timePeriod}
                 onChange={(e) => handleChange(e, "timePeriod")} />
 
-            {console.log(form.InvestedAmount)}
+            {/* {console.log(form.InvestedAmount)} */}
             <h1>Invested amount {form.InvestedAmount}</h1>
             <h1>Est. returns {form.estimatedReturns}</h1>
             <h1>Total value {form.Totalvalue}</h1>
