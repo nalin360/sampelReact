@@ -3,13 +3,16 @@ import React from 'react'
 function Inputss({
     label,
     className,
-    
     type,
     onChange,
     placeholder,
     value,
     disabled,
-    readOnly
+    max,
+    min,
+    step,
+    readOnly,
+    // props
 
 }) {
     return (
@@ -21,9 +24,9 @@ function Inputss({
                         type={type}
                         className={
                             type === 'file'
-                            ? `w-64 py-2 pl-2 pr-4 border border-gray-300 rounded-lg focus:outline-none   focus:ring-blue-500 focus:border-blue-500 p-1.5 outline-none file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-gray-600 file:text-gray-200`
+                            ? `w-64 py-2 pl-0 pr-0 border border-gray-300 rounded-lg focus:outline-none focus:ring-blue-500 focus:border-blue-500 p-1.5 outline-none file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-gray-600 file:text-gray-200`
                             
-                            : `w-64 py-2 pl-2 pr-4 border-2  border-gray-500 rounded-lg focus:outline-none focus:border-blue-500 text-gray-700`
+                            : `w-64 py-2 pl-0 pr-0 border-2  border-gray-500 rounded-lg focus:outline-none focus:border-blue-500 text-gray-700`
                             }
                         aria-label={label}
                         tabIndex={0}
@@ -32,8 +35,12 @@ function Inputss({
                         value={value}
                         disabled={disabled}
                         accept=".csv"
+                        min={min}
+                        max={max}
+                        step={step}
                         readOnly={readOnly}
                         required
+                        // {...props}
                     />
               
             </div>
