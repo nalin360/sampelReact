@@ -1,10 +1,8 @@
 
 import './App.css'
-import EventCreateForm from './components/EventCreateForm'
-import Demo from './pages/Demo'
-import Event from './pages/Event'
+
 import Form from './pages/Form'
-import Game from './pages/tictacto'
+import Form2 from './pages/Form2'
 
 function App() {
 
@@ -15,7 +13,8 @@ function App() {
       {/* </> */}
       {/* <Game/> */}
       {/* <Demo/> */}
-      <Form/> 
+      {/* <Form/>  */}
+      <Form2/>
     </div>
   )
 }

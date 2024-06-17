@@ -1,5 +1,6 @@
 import React, { useEffect, useReducer } from 'react'
 import Inputss from '../components/ui/Inputss';
+import {convertToIndianCurrency} from '../utils/convertToIndianCurrency';
 
 function reducer(state = {}, { type, payload }) {
     switch (type) {
@@ -29,16 +30,7 @@ function Form() {
         totalValue: '0'
     }
     const [state, dispatch] = useReducer(reducer, initialState);
-    // console.log(initialState);
-    /* 
-    The variables are mentioned in the table below.
-    A = P (1 + r/n) ^ nt
-    A Estimated return
-    P Present value 
-    r Rate of return
-    t Duration of investment
-    n Number of compounded interests in a year
-    */
+    
     const calculateMFReturns = () => {
         console.log("calculateMFReturns");
         const { timePeriod, rangeInput, rateOfReturn } = state;
@@ -67,9 +59,10 @@ function Form() {
         });
     }, [state.rangeInput, state.timePeriod, state.rateOfReturn])
 
+
     return (
         <div className='flex flex-col justify-center items-center h-screen gap-3 '>
-            <Inputss type="text" value={state.sampel} onChange={(e) => handleInputChange(e,"sampel")}/>
+            {/* <Inputss type="text" value={state.sampel} onChange={(e) => handleInputChange(e,"sampel")}/> */}
             <Inputss id="rangeinput" type='text' value={state.rangeInput} onChange={(e) => handleInputChange(e, "rangeInput")} />
             <Inputss type='range' min='500' max="100000" value={state.rangeInput} step="500"
                 onChange={(e) => handleInputChange(e, "rangeInput")}
@@ -83,9 +76,9 @@ function Form() {
                 onChange={(e) => handleInputChange(e, "timePeriod")}
             />
             {/*  */}
-            <div>Invested Amount {state.rangeInput}</div>
-            <div>Est Return {state.estimatedReturn}</div>
-            <div>Total value {state.totalValue}</div>
+            <div>Invested Amount {convertToIndianCurrency(state.rangeInput)}</div>
+            <div>Est Return {convertToIndianCurrency(state.estimatedReturn)}</div>
+            <div>Total value {convertToIndianCurrency(state.totalValue)}</div>
         </div>
     )
 }
