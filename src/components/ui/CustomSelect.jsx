@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 
 const CustomSelect = ({
   value,
@@ -7,6 +7,13 @@ const CustomSelect = ({
   placeholder = '',
   optionKeys
 }) => {
+  const memoizedOptions = useMemo(() => {
+    return options.map((option) => (
+      <option value={Object.values(option)} key={Object.values(option)}>
+        {Object.values(option)}
+      </option>
+    ));
+  }, [options]);
   return (
     <div className="custom-select">
 
@@ -16,14 +23,7 @@ const CustomSelect = ({
         >
 
         <option key={0} value="">{placeholder}</option>
-
-        {options.map((option) => (
-          <option value={Object.values(option)} key={Object.values(option)}>
-            {Object.values(option)}
-            {/* {option.name} */}
-          </option>
-
-        ))}
+        {memoizedOptions}
       </select>
 
       <i className="fa fa-chevron-down" />

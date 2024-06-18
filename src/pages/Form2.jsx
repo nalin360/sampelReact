@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useReducer, useState } from 'react'
 import Inputss from '../components/ui/Inputss'
 import CustomSelect from '../components/ui/CustomSelect'
 import countries from '../data/countries.json'
@@ -54,44 +54,44 @@ function Form2() {
         Totalvalue: 0
     }
     const [state, dispatch] = useReducer(reducerform2, initialState)
-    function calculateSip(form) {
-        const { amount, timePeriod, expectedResturnRate } = form;
+    const calculateSip = useMemo(() => {
+        const { amount, timePeriod, expectedResturnRate } = state;
         const monthlyInvestment = +amount;
         const rateOfInterest = +expectedResturnRate / 100 / 12; //
         const periods = +timePeriod * 12
-
         const InvestedAmount = monthlyInvestment * periods;
+
         const maturityAmount = monthlyInvestment * (((1 + rateOfInterest) ** periods - 1) / rateOfInterest) * (1 + rateOfInterest)
         const estimatedReturns = maturityAmount - (monthlyInvestment * periods);
 
         return { maturityAmount, estimatedReturns, InvestedAmount };
 
-    }
-    const handleChange = (e, type) => {
-
+    }, [state.amount, state.timePeriod, state.estimatedReturns])
+    const handleChange =useCallback( (e, type) => {
         dispatch({
             type: type,
             payload: e.target.value
         })
-    }
+    },[])
 
     useEffect(() => {
-        const { maturityAmount, estimatedReturns, InvestedAmount } = calculateSip(state);
+        const { maturityAmount, estimatedReturns, InvestedAmount } = calculateSip;
         dispatch({
-            type:"InvestedAmount",
-            payload:InvestedAmount.toFixed(2)
+            type: "InvestedAmount",
+            payload: InvestedAmount.toFixed(2)
         })
         dispatch({
-            type:"estimatedReturns",
-            payload:estimatedReturns.toFixed(2)
+            type: "estimatedReturns",
+            payload: estimatedReturns.toFixed(2)
         })
         dispatch({
-            type:"Totalvalue",
-            payload:maturityAmount.toFixed(2)
+            type: "Totalvalue",
+            payload: maturityAmount.toFixed(2)
         })
-        
-    }, [state.amount, state.timePeriod, state.expectedResturnRate]);
 
+    },
+        [state.amount, state.timePeriod, state.expectedResturnRate]
+    )
     return (
         <div className='h-screen w-full flex flex-col gap-2 justify-center items-center'>
             <Inputss type="text" placeholder="name" value={state.names} onChange={(e) => handleChange(e, "names")} />
@@ -117,8 +117,8 @@ function Form2() {
             <Inputss id="amountInput" type="number" placeholder="amount" value={state.amount}
                 onChange={(e) => handleChange(e, "amount")} />
             <RangeSlider id="rangeAmount" min={"500"} max={"1000000"} value={state.amount}
-            step={"500"}
-                onChange={(e) => handleChange(e,'amount')} />
+                step={"500"}
+                onChange={(e) => handleChange(e, 'amount')} />
             <p>percentage</p>
             <RangeSlider min={1.0} max={30} step={0.1} value={state.expectedResturnRate}
                 onChange={(e) => handleChange(e, "expectedResturnRate")} />

@@ -1,5 +1,6 @@
 
 import './App.css'
+import BluckUserLabEnv from './pages/BluckUserLabEnv'
 
 import Form from './pages/Form'
 import Form2 from './pages/Form2'
@@ -14,7 +15,8 @@ function App() {
       {/* <Game/> */}
       {/* <Demo/> */}
       {/* <Form/>  */}
-      <Form2/>
+      {/* <Form2/> */}
+      <BluckUserLabEnv/>
     </div>
   )
 }

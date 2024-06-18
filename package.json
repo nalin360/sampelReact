@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@rollup/plugin-dsv": "^3.0.4",
+    "csv": "^6.3.9",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

@@ -66,7 +66,7 @@ const EventCreateForm = () => {
             type: eventType[type],
             payload: event.target.value,
         })
-       },[],
+       },[dispatch,eventType],
     )
 
     const handleFileChange = (event) => {
