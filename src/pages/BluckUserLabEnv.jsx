@@ -1,36 +1,46 @@
-import React from 'react';
-import csv from '../data/csvFile.csv';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import csv from "../data/csvFile.csv";
+import UserComponent from '../components/ui/UserComponent';
 
 function BluckUserLabEnv() {
-    //   console.log(csv);
+    const [user, setUser] = useState([
+        {
+            id: "1",
+            name: "Jane Smith",
+            email: "janesmith@example.com",
+            temp_password: "Abc456!$%",
+            lab_env: "2"
+        }
+    ]);
 
-    const existingUser = [
-        {'email':'janesmith@example.com'},
-        {'email':'johndoe@example.com '}
-    ]
-    
-    function CheckMail(email) {
-        return existingUser.some((user) => user.email === email);
-    }
-    
+    const checkExistingUser = useMemo(() => {
+        return csv.filter(element => user.find(e => e.email !== element.email));
+    }, [csv]);
+
+    useEffect(() => {
+        // console.log("useEffect");
+        setUser(checkExistingUser);
+    }, [csv]);
+
+    const handleLabEnvChange = useCallback((index, value) => {
+        // console.log("handleLabEnvChange");
+        setUser(user.map((user, i) => {
+            if (i === index) {
+                return { ...user, lab_env: value };
+            }
+            return user;
+        }));
+    }, [user]);
+
+    // console.log(csv);
 
     return (
-        <div>
-            <div>hi</div>
-            {csv.map((value, index) => (
-                <div key={index}
-                className='hover:bg-gray-500 '
-                onClick={() => alert(`id: ${value.id} Name: ${value.Name} email:${value.email} `)}
-                >
-                    <ul>
-                        <li>id: {value.id}</li>
-                        <li>name: {value.Name} </li>
-                        <li>email: {value.email} </li>
-                        <li>existingUser: {`${CheckMail(value.email)}`}</li>
-
-                    </ul>
-                </div>
-            ))}
+        <div >
+            <ul>
+                {user.map((user, index) => (
+                    <UserComponent key={index} user={user} handleLabEnvChange={e => handleLabEnvChange(index, e.target.value)} />
+                ))}
+            </ul>
         </div>
     );
 }
