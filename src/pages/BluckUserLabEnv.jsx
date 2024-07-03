@@ -14,11 +14,12 @@ function BluckUserLabEnv() {
     ]);
 
     const checkExistingUser = useMemo(() => {
-        return csv.filter(element => user.find(e => e.email !== element.email));
+        return csv.filter(e => e.email !== 'janesmith@example.com')
     }, [csv]);
 
     useEffect(() => {
         // console.log("useEffect");
+        // console.log(checkExistingUser);
         setUser(checkExistingUser);
     }, [csv]);
 

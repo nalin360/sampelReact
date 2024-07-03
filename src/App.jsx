@@ -10,16 +10,10 @@ function App() {
 
   return (
     <div className='bg-[#212121] w-screen h-screen m-0 , p-0 flex justify-center items-center'>
-      {/* <Event/> */}
-      {/* <Event/> */}
-      {/* </> */}
-      {/* <Game/> */}
-      {/* <Demo/> */}
-      {/* <Form/>  */}
-      {/* <Form2/> */}
-      {/* <BluckUserLabEnv/> */}
+
       <Card>
-        <div>Somthing</div> 
+        {/* <div>Somthing</div>  */}
+        <BluckUserLabEnv />
       </Card>
     </div>
   )
