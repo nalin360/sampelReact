@@ -26,7 +26,7 @@ function Inputss({
                             type === 'file'
                             ? `w-64 pl-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-blue-500 focus:border-blue-500  outline-none file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-gray-600 file:text-gray-200`
                             
-                            : `@apply rounded-2px bg-gray-e0 shadow-inset-shadoww-64 py-2 pl-2  rounded-lg focus:outline-none focus:border-blue-500 text-gray-700 \
+                            : `@apply bg-gray-e0 shadow-inset-shadoww-64 py-2 pl-2  rounded-lg focus:outline-none focus:border-blue-500 text-gray-700 \
                             `
                             }
                         aria-label={label}
