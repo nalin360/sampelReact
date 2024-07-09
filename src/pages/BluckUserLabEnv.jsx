@@ -13,14 +13,14 @@ function BluckUserLabEnv() {
         }
     ]);
 
-    const checkExistingUser = useMemo(() => {
-        return csv.filter(element => user.find(e => e.email !== element.email));
+    const removeExistingUser = useMemo(() => {
+        return csv.filter(element => !user.some(e => e.email === element.email));
     }, [csv]);
 
     useEffect(() => {
         // console.log("useEffect");
-        setUser(checkExistingUser);
-    }, [csv]);
+        setUser(removeExistingUser);
+    }, [csv,removeExistingUser]);
 
     const handleLabEnvChange = useCallback((index, value) => {
         // console.log("handleLabEnvChange");
@@ -31,8 +31,6 @@ function BluckUserLabEnv() {
             return user;
         }));
     }, [user]);
-
-    // console.log(csv);
 
     return (
         <div >
