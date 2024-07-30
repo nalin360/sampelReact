@@ -8,7 +8,7 @@ function Card({children}) {
     // convex :
     // pressed: inset -23px 23px 41px #a8a8a8, inset 23px -23px 41px #ffffff;
   return (
-    <div className='p-3 min-w-min bg-cyan-400 shadow-[0px_0px_10px_5px_rgba(0, 0, 0, 0.705)]  rounded-xl hover:rounded-2xl hover:scale-125 transition-all  '>
+    <div className='p-3 min-w-min bg-zinc-700 rounded-xl hover:rounded-2xl  transition-all  '>
         {children}
     </div>
   )

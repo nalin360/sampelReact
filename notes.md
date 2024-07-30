@@ -59,9 +59,41 @@ Some common use cases for `useMemo` include:
 
 # useRef
 
+# React hook form
+
+```javascript
+const {
+  register,
+  handleSubmit,
+  formState: { errors },
+} = useForm();
+```
+
+* `register` is a function provided by the `useForm` hook. We can assign it to each input field so that the `react-hook-form` can track the changes for the input field value
+* `handleSubmit` is the function we can call when the form is submitted
+* `errors` is a nested property in the `formState` object which will contain the validation errors, if any
+
+## validation
+
+React Hook Form makes form validation easy by aligning with the existing [HTML standard for form validation](https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/Form_validation).
+
+List of validation rules supported:
+
+* required
+* min
+* max
+* minLength
+* maxLength
+* pattern
+* validate
+
+You can read more detail on each rule in the [register section](https://www.react-hook-form.com/api#register).
+
 ---
 
-1. Component Mount: The Form2 component is mounted, and the initial state is initialized with the initialState object.
+# BluckUserLabEnv
+
+1. Component Mount: The For m2 component is mounted, and the initial state is initialized with the initialState object.
 2. Initial Rendering: The component is rendered for the first time, displaying the initial state values and input fields.
 3. useEffect Hook: The useEffect hook is executed when the component mounts or when one of the following conditions change: state.amount, state.timePeriod, or state.expectedResturnRate change. This hook calculates the Sip values (InvestedAmount, estimatedReturns, and Totalvalue) using the calculateSip function.
 4. State Update: The calculated values are then updated in the state using the dispatch function, which is created using the useReducer hook. The updated state is: InvestedAmount, estimatedReturns, and Totalvalue.
@@ -70,21 +102,25 @@ Some common use cases for `useMemo` include:
 7. State Update: The updated state values are propagated back to the component, which triggers a re-render.
 8. Re-Rendering: The component re-renders again to reflect the updated state values.
 
-The flow of execution is:
+## The flow of execution is:
 
 Mounting -> Initial Rendering -> useEffect Hook -> State Update -> Re-Rendering -> Input Field Change -> State Update -> Re-Rendering
 This process repeats as long as the component is mounted and the state values change.
 
-
 Initialization
 
-The component BluckUserLabEnv is initialized with the useReducer hook, which initializes the state and dispatch variables.
+The component BluckUserLabEnv is initialized with the useReducer hook, which initializes the state and dispatch
+
+variables.
 
 state is set to the initialState array, which contains an initial user object.
 dispatch is the function that updates the state.
-The useEffect hook is called with an empty dependency array ([]), which means it will only run once when the component mounts.
+The useEffect hook is called with an empty dependency array ([]), which means it will only run once when the
+
+component mounts.
 
 The effect function is called, which dispatches an action { type: 'initialize', payload: initialState } to initialize the state.
+
 Reducer
 
 The reducer function reducerEnv is called with the current state and the dispatched action. It updates the state based on the type of action.
@@ -101,6 +137,8 @@ Flow of Execution
 
 Here's a step-by-step overview of the flow of execution:
 
+the initial state is initialized with the initialState object.
+
 The component mounts, and the useEffect hook runs, dispatching the initialize action.
 The reducer is called with the initialize action, filtering the csv data, and returning the filtered array as the new state.
 The component renders the UserComponent for each user in the state array.
@@ -109,5 +147,7 @@ The handleLabEnvChange function is called, which dispatches an updated_user acti
 The reducer is called with the updated_user action, updating the specific user object in the state array.
 The component re-renders with the updated state, reflecting the changes to the user's lab environment.
 
+We use useMemo to memoize the result of the CSV data filtering, so that it's only run once, when the component is rendered.
+We use useCallback to memoize the handleLabEnvChange function, so that it's not recreated on every render.
 
 In summary, the component initializes the state with the useReducer hook, dispatches an initialize action to filter the csv data, and then updates the state and re-renders the component when the user interacts with the UI.
